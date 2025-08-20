@@ -1,4 +1,4 @@
 output "lambda_api_url" {
-  value = aws_api_gateway_deployment.api_gw.invoke_url
-  description = "URL de invocación de la Lambda a través de API Gateway"
+  value       = aws_apigatewayv2_stage.default_stage.invoke_url
+  description = "endpoiny"
 }
