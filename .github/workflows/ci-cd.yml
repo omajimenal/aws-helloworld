@@ -45,7 +45,7 @@ jobs:
 
       - name: Import existing Lambda function
         run: |
-          terraform -chdir=terraform import aws_lambda_function.hello_world hello-world || echo "Lambda already imported"
+          terraform -chdir=terraform import aws_lambda_function.hola_mundo hola-mundo || echo "Lambda already imported"
 
       - name: Terraform Apply
         run: terraform -chdir=terraform apply -auto-approve
