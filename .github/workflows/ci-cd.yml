@@ -47,5 +47,9 @@ jobs:
         run: |
           terraform -chdir=terraform import aws_lambda_function.hola_mundo hola-mundo || echo "Lambda already imported"
 
+      - name: Import existing Lambda permission
+        run: |
+          terraform -chdir=terraform import aws_lambda_permission.api_gw hola-mundo/AllowAPIGatewayInvoke || echo "Permission already imported"
+
       - name: Terraform Apply
         run: terraform -chdir=terraform apply -auto-approve
