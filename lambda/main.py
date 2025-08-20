@@ -2,8 +2,7 @@ def lambda_handler(event, context):
     try:
         return {
             "statusCode": 200,
-            "body": "hola mundo",
-            "body": "prueba OmarJ"
+            "body": "hola mundo OmarJ",
         }
     except Exception as e:
         return {
