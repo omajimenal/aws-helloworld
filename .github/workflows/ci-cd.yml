@@ -39,5 +39,13 @@ jobs:
       - name: Terraform Init
         run: terraform -chdir=terraform init
 
+      - name: Import existing IAM Role
+        run: |
+          terraform -chdir=terraform import aws_iam_role.lambda_exec hola-mundo-lambda-role || echo "Role already imported"
+
+      - name: Import existing Lambda function
+        run: |
+          terraform -chdir=terraform import aws_lambda_function.hello_world hello-world || echo "Lambda already imported"
+
       - name: Terraform Apply
         run: terraform -chdir=terraform apply -auto-approve
