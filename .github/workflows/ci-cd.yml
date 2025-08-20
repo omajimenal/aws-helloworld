@@ -8,6 +8,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    outputs:
+      lambda_endpoint: ${{ steps.set_lambda_endpoint.outputs.endpoint }}
 
     env:
       AWS_REGION: us-east-1
@@ -53,3 +55,11 @@ jobs:
 
       - name: Terraform Apply
         run: terraform -chdir=terraform apply -auto-approve
+
+      - name: Show Lambda endpoint
+        run: terraform -chdir=terraform output lambda_api_url
+
+      - name: Set Lambda endpoint output
+        id: set_lambda_endpoint
+        run: |
+          echo "endpoint=$(terraform -chdir=terraform output -raw lambda_api_url)" >> $GITHUB_OUTPUT
